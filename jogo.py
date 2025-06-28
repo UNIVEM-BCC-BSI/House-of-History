@@ -2,10 +2,10 @@ import pygame
 import sys
 import time
 
-# Inicialização
+
 pygame.init()
 
-# Configurações da tela
+
 info = pygame.display.Info()
 LARGURA = info.current_w
 ALTURA = info.current_h
@@ -17,35 +17,33 @@ clicou = False
 comeca_conta = 0
 jogo_começou = False
 
-# Cores
+
 BRANCO = (255, 255, 255)
 LARANJA_ESCURO = (194, 103, 0)
 LARANJA_CLARO = (255, 178, 79)
 PRETO = (0, 0, 0)
 
-# Fonte (adjust font size proportionally)
-# Original screen height was 751, original font size 40
-# new_font_size = (current_height / 751) * 40
+
 fonte = pygame.font.SysFont("comicsansms", int((ALTURA / 751) * 40))
 clock = pygame.time.Clock()
 pont = pygame.font.SysFont("comicsansms", int((ALTURA / 500) * 40))
-# Original screen dimensions for proportion calculation
+
 ORIGINAL_LARGURA = 1280
 ORIGINAL_ALTURA = 751
 estado = 'Menu'
 
-# Carregar imagem de fundo
+
 fundo = pygame.image.load("Img/fundo.jpg")
 fundo = pygame.transform.scale(fundo, (LARGURA, ALTURA))
 fase1 = pygame.image.load('Img/fase1.jpg')
 fase1 = pygame.transform.scale(fase1, (LARGURA, ALTURA))
 
-# Function to draw button
+
 def desenhar_botao(texto, x_ratio, y_ratio, largura_ratio, altura_ratio, cor_normal, cor_hover, acao=None):
     mouse = pygame.mouse.get_pos()
     clique = pygame.mouse.get_pressed()
 
-    # Calculate actual position and size based on current screen resolution
+    
     x = int(x_ratio * LARGURA)
     y = int(y_ratio * ALTURA)
     largura = int(largura_ratio * LARGURA)
@@ -139,7 +137,7 @@ def jogar():
             cenamapa = pygame.image.load('img/imagemmapa.jpg')
             cenamapa = pygame.transform.scale(cenamapa,(LARGURA, ALTURA))
 
-            # Proportional interactive points for Fase 1
+            
             imagemradio = ponto_interagivel(imagemradio, 751/ORIGINAL_LARGURA, 539/ORIGINAL_ALTURA, 50/ORIGINAL_LARGURA, 50/ORIGINAL_ALTURA)
             imagemfolha = ponto_interagivel(imagemfolha, 1200/ORIGINAL_LARGURA, 600/ORIGINAL_ALTURA, 30/ORIGINAL_LARGURA, 65/ORIGINAL_ALTURA)
             imagemquadro = ponto_interagivel(imagemquadro, 834/ORIGINAL_LARGURA, 188/ORIGINAL_ALTURA, 110/ORIGINAL_LARGURA, 120/ORIGINAL_ALTURA)
@@ -229,7 +227,7 @@ def jogar():
             elif evento.type == pygame.MOUSEBUTTONUP:
                     clicou = False  
 
-                # Proportional password display circles
+                
             circle_radius = int(25/ORIGINAL_ALTURA * ALTURA)
             circle_y = int(283/ORIGINAL_ALTURA * ALTURA)
 
@@ -260,7 +258,7 @@ def jogar():
             cenaesfingecama = pygame.image.load('img/cenaesfingecama.jpg')
             cenaesfingecama = pygame.transform.scale(cenaesfingecama, (LARGURA, ALTURA))
 
-            # Proportional interactive points for Fase 2
+           
             imgpapiro = ponto_interagivel(imgpapiro, 566/ORIGINAL_LARGURA, 480/ORIGINAL_ALTURA, 150/ORIGINAL_LARGURA, 20/ORIGINAL_ALTURA)
             imgpiramides = ponto_interagivel(imgpiramides, 1111/ORIGINAL_LARGURA, 436/ORIGINAL_ALTURA, 50/ORIGINAL_LARGURA, 30/ORIGINAL_ALTURA)
             imganubis = ponto_interagivel(imganubis, 39/ORIGINAL_LARGURA, 238/ORIGINAL_ALTURA, 40/ORIGINAL_LARGURA, 90/ORIGINAL_ALTURA)
@@ -314,7 +312,7 @@ def jogar():
         
             superficie_texto = fonte.render(texto_digitado, True, (0, 0, 0)) 
             TELA.blit(cenasenha2, (0 , 0))
-            # Proportional text input position
+           
             TELA.blit(superficie_texto, (int(425/ORIGINAL_LARGURA * LARGURA), int(299/ORIGINAL_ALTURA * ALTURA)))
         
         if(estado == 'fase3'):
@@ -333,8 +331,7 @@ def jogar():
             cenaband = pygame.transform.scale(cenaband, (LARGURA, ALTURA))
             cenacavalo = pygame.image.load('img/cenacavalo.jpg')
             cenacavalo = pygame.transform.scale(cenacavalo, (LARGURA, ALTURA))
-            
-            # Proportional interactive points for Fase 3
+
             imgrio1 = ponto_interagivel(imgrio1, 895/ORIGINAL_LARGURA, 96/ORIGINAL_ALTURA, 50/ORIGINAL_LARGURA, 56/ORIGINAL_ALTURA)
             imgrio2 = ponto_interagivel(imgrio2, 956/ORIGINAL_LARGURA, 126/ORIGINAL_ALTURA, 70/ORIGINAL_LARGURA, 80/ORIGINAL_ALTURA)
             imgdomP = ponto_interagivel(imgdomP, 447/ORIGINAL_LARGURA, 52/ORIGINAL_ALTURA, 120/ORIGINAL_LARGURA, 150/ORIGINAL_ALTURA)
@@ -381,7 +378,10 @@ def jogar():
             
             superficie_texto = fonte.render(texto_digitado, True, (0, 0, 0)) 
             TELA.blit(cenasenha3, (0 , 0))
-            # Proportional text input position
+           
+
+
+           
             TELA.blit(superficie_texto, (int(302/ORIGINAL_LARGURA * LARGURA), int(315/ORIGINAL_ALTURA * ALTURA)))
 
             if(botao_invisivel_click(278/ORIGINAL_LARGURA, 377/ORIGINAL_ALTURA, 230/ORIGINAL_LARGURA, 67/ORIGINAL_ALTURA)):
@@ -465,7 +465,6 @@ def menu():
        if(estado == 'Menu'):
 
         TELA.blit(fundo, (0, 0))
-        # Pass ratios instead of absolute values to desenhar_botao
         desenhar_botao("Jogar", 321/ORIGINAL_LARGURA, 332/ORIGINAL_ALTURA, 200/ORIGINAL_LARGURA, 60/ORIGINAL_ALTURA, LARANJA_ESCURO, LARANJA_CLARO, jogar)
         desenhar_botao("Créditos", 321/ORIGINAL_LARGURA, 406/ORIGINAL_ALTURA, 200/ORIGINAL_LARGURA, 60/ORIGINAL_ALTURA, LARANJA_ESCURO, LARANJA_CLARO, creditos)
         desenhar_botao("Sair", 321/ORIGINAL_LARGURA, 479/ORIGINAL_ALTURA, 200/ORIGINAL_LARGURA, 60/ORIGINAL_ALTURA, LARANJA_ESCURO, LARANJA_CLARO, sair)
